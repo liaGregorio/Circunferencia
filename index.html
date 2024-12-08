@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da Equação da Circunferência</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Seção explicativa sobre a circunferência -->
+        <div class="header">
+            <h1>Entendendo a Circunferência</h1>
+            <p>A circunferência é o conjunto de todos os pontos que estão a uma distância constante de um ponto fixo chamado
+                centro. A equação da circunferência é dada por:</p>
+            <h4>Equação Geral:</h4>
+            <p>x² + y² + Dx + Ey + F = 0</p>
+            <h4>Equação Reduzida:</h4>
+            <p>(x - h)² + (y - k)² = r²</p>
+            <p>Onde:</p>
+            <ul>
+                <li><strong>h, k</strong>: Coordenadas do centro da circunferência.</li>
+                <li><strong>r</strong>: Raio da circunferência.</li>
+                <li><strong>D, E, F</strong>: Coeficientes que podem ser calculados a partir do centro e raio da
+                    circunferência.</li>
+            </ul>
+            <p>As fórmulas para encontrar a posição relativa entre um ponto e a circunferência, ou entre uma reta e a
+                circunferência, também são importantes:</p>
+            <h5>Posição Relativa entre Ponto e Circunferência:</h5>
+            <p>Distância do ponto (x₁, y₁) ao centro (h, k): <strong>d = √((x₁ - h)² + (y₁ - k)²)</strong></p>
+            <p>Comparação:</p>
+            <ul>
+                <li>Se d < r, o ponto está dentro da circunferência.</li>
+                <li>Se d = r, o ponto está sobre a circunferência (tangente).</li>
+                <li>Se d > r, o ponto está fora da circunferência.</li>
+            </ul>
+            <h5>Posição Relativa entre Reta e Circunferência:</h5>
+            <p>A distância de uma reta Ax + By + C = 0 ao centro (h, k) é dada por:</p>
+            <strong>d = |Ah + Bk + C| / √(A² + B²)</strong>
+            <p>Comparação:</p>
+            <ul>
+                <li>Se d = r, a reta é tangente à circunferência.</li>
+                <li>Se d < r, a reta é secante à circunferência.</li>
+                <li>Se d > r, a reta é externa à circunferência.</li>
+            </ul>
+        </div>
+    
+        <!-- Formulário para calcular a equação da circunferência -->
+        <div class="header mt-5">
+            <h1>Cálculo da Equação da Circunferência</h1>
+            <p>Digite os valores de X, Y e Raio para calcular as equações.</p>
+        </div>
+
+        <form id="form-circunferencia">
+            <div class="mb-3">
+                <label for="x" class="form-label">Valor de X</label>
+                <input type="number" class="form-control" id="x" required>
+            </div>
+            <div class="mb-3">
+                <label for="y" class="form-label">Valor de Y</label>
+                <input type="number" class="form-control" id="y" required>
+            </div>
+            <div class="mb-3">
+                <label for="raio" class="form-label">Raio</label>
+                <input type="number" class="form-control" id="raio" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Calcular</button>
+        </form>
+
+        <div id="result" class="result mt-4" style="display:none;"></div>
+
+        <!-- Seção para calcular a posição do ponto -->
+        <div class="header mt-5">
+            <h1>Calcular Posição Relativa do Ponto</h1>
+            <p>Digite as coordenadas do ponto e os dados da circunferência.</p>
+        </div>
+
+        <form id="form-ponto">
+            <div class="mb-3">
+                <label for="pontoX" class="form-label">Valor de X do Ponto</label>
+                <input type="number" class="form-control" id="pontoX" required>
+            </div>
+            <div class="mb-3">
+                <label for="pontoY" class="form-label">Valor de Y do Ponto</label>
+                <input type="number" class="form-control" id="pontoY" required>
+            </div>
+            <div class="mb-3">
+                <label for="xCentro" class="form-label">Valor de X do Centro da Circunferência</label>
+                <input type="number" class="form-control" id="xCentro" required>
+            </div>
+            <div class="mb-3">
+                <label for="yCentro" class="form-label">Valor de Y do Centro da Circunferência</label>
+                <input type="number" class="form-control" id="yCentro" required>
+            </div>
+            <div class="mb-3">
+                <label for="raioPonto" class="form-label">Raio da Circunferência</label>
+                <input type="number" class="form-control" id="raioPonto" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Calcular Posição</button>
+        </form>
+
+        <div id="resultPonto" class="result mt-4" style="display:none;"></div>
+
+        <!-- Seção para calcular a posição relativa entre reta e circunferência -->
+        <div class="header mt-5">
+            <h1>Calcular Posição Relativa entre Reta e Circunferência</h1>
+            <p>Digite os coeficientes da reta e os dados da circunferência.</p>
+        </div>
+
+        <form id="form-reta-circunferencia">
+            <div class="mb-3">
+                <label for="a" class="form-label">Coeficiente A da Reta (Ax + By + C = 0)</label>
+                <input type="number" class="form-control" id="a" required>
+            </div>
+            <div class="mb-3">
+                <label for="b" class="form-label">Coeficiente B da Reta (Ax + By + C = 0)</label>
+                <input type="number" class="form-control" id="b" required>
+            </div>
+            <div class="mb-3">
+                <label for="c" class="form-label">Coeficiente C da Reta (Ax + By + C = 0)</label>
+                <input type="number" class="form-control" id="c" required>
+            </div>
+            <div class="mb-3">
+                <label for="xCentroReta" class="form-label">Valor de X do Centro da Circunferência</label>
+                <input type="number" class="form-control" id="xCentroReta" required>
+            </div>
+            <div class="mb-3">
+                <label for="yCentroReta" class="form-label">Valor de Y do Centro da Circunferência</label>
+                <input type="number" class="form-control" id="yCentroReta" required>
+            </div>
+            <div class="mb-3">
+                <label for="raioReta" class="form-label">Raio da Circunferência</label>
+                <input type="number" class="form-control" id="raioReta" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Calcular Posição Relativa</button>
+        </form>
+
+        <div id="resultRetaCircunferencia" class="result mt-4" style="display:none;"></div>
+
+    </div>
+
+    <!-- Bootstrap JS, Popper, e jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-63z5vSCaHxC7ghazj8hjl8qRGwxnV6GZy1TVpr7RPyVokE6HbXyI6s7rYJ66ErvZ"
+        crossorigin="anonymous"></script>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
